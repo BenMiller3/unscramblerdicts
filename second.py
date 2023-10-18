@@ -17,6 +17,8 @@ class DAWGNode:
         output = {}
         if self.isWord:
             output["i"] = True
+        else:
+            output["i"] = False
         if self.children:
             output["c"] = {k: v.to_dict() for k, v in self.children.items()}
         return output
@@ -59,7 +61,7 @@ def main():
         dawg = build_dawg_from_json_file(filename)
         output_filename = filename.replace('words', 'dawg')
         with open(output_filename, 'w', encoding='utf-8') as out_file:
-            json.dump(dawg, out_file, ensure_ascii=False, indent=2)
+            json.dump(dawg, out_file, ensure_ascii=False)
 
 if __name__ == "__main__":
 	main()
